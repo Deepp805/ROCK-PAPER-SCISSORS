@@ -34,6 +34,31 @@ function playRound(playerSelection,computerSelection){
         }
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game(){
+    let compwins=0
+    let playerwins=0
+    for ( let q = 0;  q < 5 ; q++ ){
+        playerSelection = window.prompt('rock,paper, or scissor?');
+        let res = playRound(playerSelection,computerPlay())
+        let result = res.includes("win");
+        if (result==true){
+            ++playerwins
+        }
+            else if (res.includes("lose")){
+                ++compwins
+            }
+        console.log(res)
+    }
+
+if (compwins > playerwins){
+    console.log('computer wins the game')
+}   else if (playerwins>compwins){
+        console.log('player wins the game')
+    }
+    else{
+        console.log('the game is a tie')
+    }
+    
+}
+
+game()
