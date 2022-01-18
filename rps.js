@@ -34,31 +34,60 @@ function playRound(playerSelection,computerSelection){
         }
 }
 
-function game(){
-    let compwins=0
-    let playerwins=0
-    for ( let q = 0;  q < 5 ; q++ ){
-        playerSelection = window.prompt('rock,paper, or scissor?');
-        let res = playRound(playerSelection,computerPlay())
-        let result = res.includes("win");
-        if (result==true){
-            ++playerwins
-        }
-            else if (res.includes("lose")){
-                ++compwins
-            }
-        console.log(res)
-    }
 
-if (compwins > playerwins){
-    console.log('computer wins the game')
-}   else if (playerwins>compwins){
-        console.log('player wins the game')
+var btn = document.createElement("button");
+btn.innerHTML = "Rock";
+document.body.appendChild(btn);
+btn.addEventListener("click",function(){game(btn.textContent,computerPlay())})
+
+
+let bt = document.createElement("button");
+bt.innerHTML = "Paper";
+document.body.appendChild(bt);
+bt.addEventListener("click",function(){game(btn.textContent,computerPlay())})
+
+let b = document.createElement("button");
+b.innerHTML = "Scissors";
+document.body.appendChild(b);
+b.addEventListener("click",function(){game(btn.textContent,computerPlay())})
+
+let wins=0
+let loss=0
+let tie=0
+const tubbons = document.getElementsByTagName("button")
+function game(playerSelection,computerSelection){
+    if (playRound(playerSelection,computerSelection).includes('win')) {
+        wins=wins+1
+        div.innerHTML = `Wins: ${wins}   Losses: ${loss}   Ties: ${tie}`
+        if (wins>4){
+            keep.innerHTML='you win the game'
+            const body=document.getElementsByTagName("body")
+            document.body.removeChild(tubbons[0])
+            document.body.removeChild(tubbons[0])
+            document.body.removeChild(tubbons[0])
+
+        }
+    }
+    else if (playRound(playerSelection,computerSelection).includes('lose')){
+        loss=loss+1
+        div.innerHTML = `Wins: ${wins}   Losses: ${loss}   Ties: ${tie}`
+        if (loss>4){
+            keep.innerHTML='you lose the game'
+            const body=document.getElementsByTagName("body")
+            document.body.removeChild(tubbons[0])
+            document.body.removeChild(tubbons[0])
+            document.body.removeChild(tubbons[0])
+        }
     }
     else{
-        console.log('the game is a tie')
+        tie=tie+1
+        div.innerHTML = `Wins: ${wins}   Losses: ${loss}   Ties: ${tie}`
     }
-    
 }
 
-game()
+let keep = document.createElement("div")
+
+let div = document.createElement("div");
+div.innerHTML = `Wins: ${wins}   Losses: ${loss}   Ties: ${tie}`
+document.body.appendChild(div)
+document.body.appendChild(keep)
